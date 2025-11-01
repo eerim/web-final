@@ -1,0 +1,10 @@
+[
+  { "emoji": "👍", "name": "Thumbs Up", "region": "Western", "generation": "Gen Z", "flag": "🇺🇸" },
+  { "emoji": "✌️", "name": "Peace Sign", "region": "Global", "generation": "Millennial", "flag": "🌍" },
+  { "emoji": "👌", "name": "OK Sign", "region": "Western", "generation": "Gen X", "flag": "🇬🇧" },
+  { "emoji": "🙏", "name": "Namaste", "region": "Asian", "generation": "Boomer", "flag": "🇮🇳" },
+  { "emoji": "🤙", "name": "Shaka", "region": "Western", "generation": "Millennial", "flag": "🇧🇷" },
+  { "emoji": "🙌", "name": "Raise Hands", "region": "Global", "generation": "Gen Z", "flag": "🌎" },
+  { "emoji": "👋", "name": "Wave", "region": "Global", "generation": "All", "flag": "🇯🇵" },
+  { "emoji": "🤝", "name": "Handshake", "region": "Western", "generation": "Boomer", "flag": "🇨🇦" }
+]

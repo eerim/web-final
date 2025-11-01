@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  background: linear-gradient(135deg, #fffdf7, #f9f7ff);
+  color: #444;
+}
+h1 {
+  font-size: 2.6rem;
+  text-align: center;
+  color: #4b3f72;
+  animation: float 4s ease-in-out infinite;
+}
+.gesture-card {
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #f4f0ff);
+  transition: all 0.4s ease;
+  border: 1px solid #e8dfff;
+}
+
+.gesture-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.gesture-card h5 {
+  color: #6b5b95;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.gesture-card p {
+  color: #6b5b95;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
