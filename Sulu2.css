@@ -1,0 +1,409 @@
+:root {
+    /* --- Основные Цвета и Шрифты Книжного Стиля --- */
+    --color-primary: #C95D4B;
+    --color-secondary: #4C7662;
+    --color-bg-light: #FCF8E8; 
+    --color-bg-card: #FAF3D9;
+    --color-text: #3E3224; 
+    --color-border: #FFC107;
+    --font-fancy: 'Georgia', serif; 
+    --font-body: 'Segoe UI', Tahoma, sans-serif;
+    --border-radius-soft: 15px;
+
+    /* Переопределение системных переменных */
+    --primary-color: var(--color-primary); 
+    --secondary-color: var(--color-secondary); 
+    --dark-bg: var(--color-text);
+    --light-text: var(--color-text);
+    --dark-text: var(--color-bg-light);
+    --border-radius-lg: var(--border-radius-soft);
+
+    /* Цвета для Фон/CTA */
+    --sky-blue: var(--color-bg-light);
+    --cloud-white: var(--color-bg-card);
+    --map-ocean-color: var(--color-bg-card);
+    --wavy-yellow: var(--color-primary); 
+    --wavy-orange: #A94A3D; 
+    --wavy-shadow: #8A3B31; 
+    --cta-inner-blue: var(--color-primary); 
+    --cta-border-navy: #A94A3D; 
+}
+
+body {
+    font-family: var(--font-body);
+    /* Сделать body полностью прозрачным */
+    background-color: transparent !important; 
+    color: var(--light-text);
+    transition: all 0.5s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    /* Удалить текстуру "книжной бумаги" */
+    background-image: none; 
+}
+
+/* --- НАСТРОЙКА НОВОГО ФОНОВОГО ИЗОБРАЖЕНИЯ (MAP.JPG) --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* ПУТЬ К ВАШЕМУ ИЗОБРАЖЕНИЮ MAP.JPG */
+    background-image: url('map.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Небольшое затемнение изображения (для читаемости) */
+    z-index: -1;
+}
+
+/* --- ТЕМНЫЙ РЕЖИМ (DARK MODE): ПОЛНАЯ АДАПТАЦИЯ --- */
+
+/* 1. ОСНОВНОЙ ФОН (BODY) */
+body.dark-mode {
+    /* Установить основной фон в темно-коричневый */
+    background-color: var(--dark-bg) !important; 
+    color: var(--dark-text); /* Сменить текст на светлый */
+    background-image: none !important;
+}
+
+/* 2. ФОНОВОЕ ИЗОБРАЖЕНИЕ (BODY::BEFORE) */
+body.dark-mode::before {
+    /* Сильное затемнение фонового изображения */
+    opacity: 0.2; 
+    filter: brightness(0.7) grayscale(0.2); 
+}
+
+/* 3. НАВИГАЦИОННАЯ ПАНЕЛЬ (HEADER) */
+.site-title-bar.dark-mode, 
+body.dark-mode .site-title-bar {
+    /* Сменить фон навигации на темный */
+    background: var(--dark-bg);
+    border-bottom: 3px solid var(--color-primary); 
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .site-title-bar a {
+    color: var(--dark-text) !important; 
+}
+body.dark-mode .site-title-bar a:hover {
+    color: var(--color-primary) !important; 
+}
+body.dark-mode .login-btn-cartoon {
+    /* Затемнение кнопки входа */
+    background-color: var(--color-secondary);
+    color: var(--dark-text);
+}
+
+/* 4. ОСНОВНОЙ КОНТЕЙНЕР (WORLD-MAP-CONTAINER) */
+body.dark-mode #world-map-container {
+    /* Затемнение внутреннего фона контейнера карты */
+    background-color: rgba(62, 50, 36, 0.9); 
+    border: 3px solid var(--color-secondary); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(76, 118, 98, 0.8);
+}
+
+/* 5. ТЕКСТ В КОНТЕЙНЕРЕ */
+body.dark-mode .animated-text {
+    /* Затемнение фона внутреннего текста */
+    background-color: rgba(0, 0, 0, 0.5); 
+    -webkit-text-fill-color: var(--dark-text); /* Светлый текст */
+    color: var(--dark-text);
+}
+
+/* 6. КНОПКА CTA И ФУТЕР */
+body.dark-mode footer {
+    /* Затемнение футера */
+    background: var(--dark-bg) !important; 
+    border-top: 3px solid var(--color-secondary) !important;
+}
+body.dark-mode footer p, body.dark-mode footer a {
+    color: var(--dark-text) !important;
+}
+
+/* --- СЛОИ СЦЕНЫ И АНИМАЦИЯ --- */
+.scene-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    pointer-events: none;
+    overflow: hidden; 
+}
+
+.main-content {
+    z-index: 10; 
+    position: relative;
+    padding: 100px 0 150px; 
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Элементы Анимации */
+.cloud {
+    background: var(--cloud-white);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: moveClouds linear infinite;
+    opacity: 0.7; 
+}
+.cloud-1 { width: 100px; height: 60px; top: 10%; left: -20%; animation-duration: 25s; }
+.cloud-2 { width: 150px; height: 90px; top: 5%; left: -30%; animation-duration: 40s; }
+.cloud-3 { width: 80px; height: 50px; top: 20%; left: -10%; animation-duration: 30s; }
+.airplane-icon {
+    position: absolute;
+    font-size: 2rem; 
+    color: var(--color-primary); 
+    top: 50%;
+    left: -10%;
+    animation: flyPlane 60s linear infinite;
+    z-index: 9;
+}
+
+@keyframes moveClouds {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 350px)); } 
+}
+@keyframes flyPlane {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(120vw) translateY(5vh) rotate(10deg); } 
+    100% { transform: translateX(0) translateY(0) rotate(0deg); } 
+}
+
+
+/* --- КОНТЕЙНЕР КАРТЫ --- */
+#world-map-container {
+    background-color: rgba(250, 243, 217, 0.95); /* Полупрозрачный фон (бумага) */
+    border-radius: var(--border-radius-lg);
+    border: 3px solid var(--color-border);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 0 15px rgba(255, 193, 7, 0.5);
+    padding: 30px 40px;
+    max-width: 850px;
+    width: 95%; 
+    height: 450px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    position: relative;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; 
+    backdrop-filter: none;
+}
+#geopolitical-map-image {
+    display: none; 
+}
+
+/* --- КНОПКА CTA (ПРИЗЫВ К ДЕЙСТВИЮ) --- */
+#cta-frame {
+    position: relative; 
+    margin-top: 30px; 
+    z-index: 30; 
+    padding: 0;
+    background: transparent; 
+    border: none;
+    box-shadow: none; 
+    border-radius: 0; 
+    transition: all 0.3s ease-in-out;
+    display: block; 
+}
+
+.btn-cta-giant {
+    position: relative;
+    z-index: 2; 
+    display: block;
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto;
+    background: var(--color-primary); 
+    color: var(--dark-text); 
+    border: 3px solid var(--cta-border-navy); 
+    border-radius: 5px; 
+    padding: 15px 30px;
+    font-size: 1.5rem; 
+    font-weight: bold;
+    font-family: var(--font-fancy); 
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 var(--cta-border-navy); 
+    transition: all 0.1s;
+    overflow: hidden; 
+    text-decoration: none;
+}
+#cta-frame:hover {
+    transform: none; 
+    box-shadow: none; 
+}
+.btn-cta-giant:hover {
+    background: #D96D5D;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 var(--cta-border-navy);
+}
+.btn-cta-giant:active {
+    box-shadow: 0 1px 0 var(--cta-border-navy);
+    transform: translateY(4px); 
+}
+
+/* --- СТИЛИ НАВИГАЦИИ --- */
+.site-title-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(250, 243, 217, 1); 
+    border-bottom: 3px solid var(--color-secondary); 
+    z-index: 1000;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 10px 20px;
+    margin: 0;
+    backdrop-filter: none;
+}
+.site-title-bar a:first-child { 
+    color: var(--color-primary);
+    font-size: 1.5em;
+    font-family: var(--font-fancy);
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-pills-cartoon {
+    background-color: transparent; 
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none; 
+    backdrop-filter: none;
+}
+.nav-link-cartoon {
+    color: var(--color-text); 
+    border-radius: 0 !important;
+    margin: 0 10px;
+    font-weight: normal; 
+    transition: all 0.3s;
+    font-family: var(--font-body);
+}
+.nav-link-cartoon {
+    color: var(--color-text); 
+    border-radius: 0 !important;
+    margin: 0 10px;
+    font-weight: normal; 
+    font-family: var(--font-body);
+}
+.nav-link-cartoon:hover {
+    transform: none;
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+.login-btn-cartoon {
+    background-color: var(--color-secondary);
+    box-shadow: 0 3px 0 #3A5C4A;
+    border-radius: 5px;
+    color: var(--dark-text);
+}
+
+/* --- ОРТАДАҒЫ КОНТЕЙНЕР (WORLD-MAP-CONTAINER) --- */
+#world-map-container {
+    background-color: rgba(250, 243, 217, 0.95); /* Мөлдірлігі жоғары қағаз фоны */
+    border-radius: var(--border-radius-lg);
+    border: 3px solid var(--color-border);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 0 15px rgba(255, 193, 7, 0.5);
+    padding: 30px 40px;
+    max-width: 850px;
+    height: 450px; 
+    position: relative;
+    margin-top: 30px;
+    backdrop-filter: none;
+}
+#geopolitical-map-image { display: none; }
+
+/* Күн иконкасы (Стили мен позициясы сақталған) */
+.sun-icon {
+    position: absolute;
+    top: 25px; 
+    right: 25px;
+    font-size: 2.5rem; 
+    color: var(--color-primary); 
+    animation: spinSun 10s linear infinite;
+    z-index: 15;
+}
+@keyframes spinSun { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Контейнердегі МӘТІН (Animated Text) */
+.animated-text-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+}
+.animated-text {
+    text-align: center;
+    font-weight: bold;
+    font-family: var(--font-fancy); 
+    font-size: 2.5rem; 
+    line-height: 1.4;
+    text-shadow: none; 
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: var(--color-text); 
+    animation: none; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Фонды мөлдір ету */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- CTA БАТЫРМАСЫ --- */
+#cta-frame {
+    position: relative; 
+    margin-top: 30px; 
+    z-index: 30; 
+    padding: 0;
+    background: transparent; 
+    border: none;
+    box-shadow: none; 
+    display: block; 
+}
+.btn-cta-giant {
+    display: block;
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto;
+    background: var(--color-primary); 
+    color: var(--dark-text); 
+    border: 3px solid var(--cta-border-navy); 
+    border-radius: 5px; 
+    padding: 15px 30px;
+    font-size: 1.5rem; 
+    font-weight: bold;
+    font-family: var(--font-fancy); 
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 var(--cta-border-navy); 
+    transition: all 0.1s;
+    text-decoration: none;
+}
+.btn-cta-giant:hover {
+    background: #D96D5D;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 var(--cta-border-navy);
+}
+.btn-cta-giant:active {
+    box-shadow: 0 1px 0 var(--cta-border-navy);
+    transform: translateY(4px); 
+}
+
+/* --- ФУТЕР --- */
+footer {
+    background: var(--color-secondary) !important; 
+    border-top: 3px solid var(--color-primary) !important; 
+    z-index: 100;
+    text-align: center;
+    padding: 20px;
+}
+footer p, footer a {
+    color: var(--dark-text) !important; 
+}
