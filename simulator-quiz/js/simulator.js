@@ -22,30 +22,11 @@ const SCNRS = {
             }
         ]
     },
-    "okSign_BRA": { 
-        name: "OK Sign in Brazil",
-        states: [ 
-            { 
-                text: "Tourist orders food and happily gives an OK sign (👌) to confirm the order.",
-                b1: { img: BASE_IMG_PATH + "ok/c1p1.webp", cap: "Delicious food!" },
-                b2: { img: BASE_IMG_PATH + "ok/c2p1.webp", cap: "I'll take it." }, 
-                b3: { img: BASE_IMG_PATH + "ok/c3p1.webp", cap: "OK! 👌" } 
-            },
-            { 
-                text: "The waiter is deeply offended and rushes off to complain.",
-                b1: { img: BASE_IMG_PATH + "ok/c1p2.webp", cap: "VULGAR!" },
-                b2: { img: BASE_IMG_PATH + "ok/c2p2.webp", cap: "Offensive!" }, 
-                b3: { img: BASE_IMG_PATH + "ok/c3p2.webp", cap: "Apologize!" } ,
-                finalMessage: "<strong>Cultural Lesson:</strong> The 'OK' Sign (👌) is highly offensive in Brazil and some other countries (like Turkey), where it is interpreted as an insult or vulgar reference. <strong>USE ONLY THUMBS UP (👍) FOR OK.</strong>"
-            }
-        ]
-    }
 };
 
 // data for selectors
 const G_DATA = {
     "thumbsUp": { emoji: "👍", name: "Thumbs Up", regions: { "middleEast": { name: "Middle East (Iran, Iraq...)", key: "thumbsUp_ME" } } },
-    "okSign": { emoji: "👌", name: "OK Sign", regions: { "brazil": { name: "Brazil", key: "okSign_BRA" } } }
 };
 
 const gestureSelect = document.getElementById('gesture-select');
@@ -97,7 +78,6 @@ function updateRegionSelect() {
 function startSimulation() {
     currentKey = regionSelect.value;
     currentIndex = 0;
-
     if (!currentKey) return alert("Please select both a gesture and a region.");
     // hide selector, show simulator
     selectorSection.style.display = 'none';
@@ -108,14 +88,12 @@ function startSimulation() {
     document.getElementById('img-1').src = '';
     document.getElementById('img-2').src = '';
     document.getElementById('img-3').src = '';
-
     playNextPanel();
 }
 
 function playNextPanel() {
     const scenario = SCNRS[currentKey];
     const state = scenario.states[currentIndex];
- 
     scenarioCaption.textContent = state.text;
 
     document.getElementById('img-1').src = state.b1.img;
@@ -129,7 +107,6 @@ function playNextPanel() {
     
 
     showImagesSequential(400); 
-
     if (currentIndex === scenario.states.length - 1) {
         setTimeout(showFinalMessage, DELAY); 
     } else {
@@ -167,7 +144,6 @@ function showImagesSequential(step = 220) {
         if (el) el.classList.remove('show-animated');
         void el.offsetWidth;
     });
-
     ids.forEach((sel, i) => {
         const el = document.querySelector(sel + ' .reveal');
         if (!el) return;

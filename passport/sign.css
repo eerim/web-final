@@ -1,7 +1,3 @@
-body {
-    background-color: var(--color-bg-light);
-}
-
 .sign-card {
     background-color: var(--color-bg-card);
     border: 3px solid var(--color-primary);

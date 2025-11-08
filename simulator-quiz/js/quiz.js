@@ -36,32 +36,32 @@ function updateStamps(stampId) {
 const quizData = [
     { 
         id: 1, countryName: 'Iran', correctAnswer: 'C', 
-        feedbackCorrect: "✅ <strong>Gesture Guru!</strong> You correctly avoided insulting the driver in Iran.",
-        feedbackIncorrect: "❌ <strong>CULTURAL FOUL!</strong> The Thumbs-Up is a rude insult in Iran. Misunderstanding alert!", 
+        feedbackCorrect: "✅ Gesture Guru! You correctly avoided insulting the driver in Iran.",
+        feedbackIncorrect: "❌ CULTURAL FOUL! The Thumbs-Up is a rude insult in Iran. Misunderstanding alert!", 
         countryStamp: 'IRAN_THUMBS_UP' 
     },
     { 
         id: 2, countryName: 'Turkey', correctAnswer: 'C', 
-        feedbackCorrect: "✅ <strong>Excellent!</strong> The 'OK' sign is aggressive and insulting in Turkey. You passed the test!",
-        feedbackIncorrect: "❌ <strong>CULTURAL FOUL!</strong> The 'OK' sign is highly offensive in Turkey. That's a huge blunder!", 
+        feedbackCorrect: "✅ Excellent! The 'OK' sign is aggressive and insulting in Turkey. You passed the test!",
+        feedbackIncorrect: "❌ CULTURAL FOUL! The 'OK' sign is highly offensive in Turkey. That's a huge blunder!", 
         countryStamp: 'TURKEY_OK_SIGN' 
     },
     { 
         id: 3, countryName: 'UK', correctAnswer: 'B', 
-        feedbackCorrect: "✅ <strong>Perfect!</strong> The backward 'V' is a massive insult in the UK. You avoided a bar fight!",
-        feedbackIncorrect: "❌ <strong>CULTURAL FOUL!</strong> The backward 'V' in the UK is the equivalent of the middle finger. Ouch!", 
+        feedbackCorrect: "✅ Perfect! The backward 'V' is a massive insult in the UK. You avoided a bar fight!",
+        feedbackIncorrect: "❌ CULTURAL FOUL! The backward 'V' in the UK is the equivalent of the middle finger. Ouch!", 
         countryStamp: 'UK_V_SIGN' 
     },
     { 
         id: 4, countryName: 'Bulgaria', correctAnswer: 'A', 
-        feedbackCorrect: "✅ <strong>Smart Traveler!</strong> In Bulgaria, nodding up and down means 'NO'. You correctly disagreed!",
-        feedbackIncorrect: "❌ <strong>CULTURAL FOUL!</strong> Up-and-down means 'No' in Bulgaria. Your waiter thinks you hated the food!", 
+        feedbackCorrect: "✅ Smart Traveler! In Bulgaria, nodding up and down means 'NO'. You correctly disagreed!",
+        feedbackIncorrect: "❌ CULTURAL FOUL! Up-and-down means 'No' in Bulgaria. Your waiter thinks you hated the food!", 
         countryStamp: 'BULGARIA_NOD' 
     },
     { 
         id: 5, countryName: 'Philippines', correctAnswer: 'C', 
-        feedbackCorrect: "✅ <strong>Master Communicator!</strong> The 'Come Here' finger is used for calling animals in the Philippines. You are safe!",
-        feedbackIncorrect: "❌ <strong>CULTURAL FOUL!</strong> That gesture is exclusively used for calling dogs in the Philippines and is highly insulting to a human.", 
+        feedbackCorrect: "✅ Master Communicator! The 'Come Here' finger is used for calling animals in the Philippines. You are safe!",
+        feedbackIncorrect: "❌ CULTURAL FOUL! That gesture is exclusively used for calling dogs in the Philippines and is highly insulting to a human.", 
         countryStamp: 'PHL_COME_HERE' 
     }
 ];
